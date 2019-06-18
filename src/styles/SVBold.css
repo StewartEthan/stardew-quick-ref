@@ -1,0 +1,9 @@
+@font-face {
+  font-display: fallback;
+  font-family: 'SV Bold';
+  font-style: normal;
+  font-weight: bold;
+  src: local('SV Bold'),
+       local('svbold'),
+       url('../static/font/svbold/svbold.ttf') format('truetype')
+}

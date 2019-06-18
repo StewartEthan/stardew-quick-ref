@@ -1,0 +1,9 @@
+@font-face {
+  font-display: fallback;
+  font-family: 'SV Thin';
+  font-style: normal;
+  font-weight: normal;
+  src: local('SV Thin'),
+       local('svthin'),
+       url('../static/font/svthin/svthin.ttf') format('truetype')
+}
