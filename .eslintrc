@@ -98,6 +98,7 @@
     "yield-star-spacing": ["warn", "after"],
 
     "react/jsx-uses-vars": "error",
+    "react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }],
     "react/no-unknown-property": "off"
   }
 }
