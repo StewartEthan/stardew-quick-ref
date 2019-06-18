@@ -1,12 +1,12 @@
 {
   "parserOptions": {
-    "ecmaVersion": 2017,
+    "ecmaVersion": 2018,
     "sourceType": "module",
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
       "jsx": true
     }
   },
+  "parser": "babel-eslint",
 
   "plugins": [
     "react"
@@ -73,6 +73,7 @@
     "no-trailing-spaces": ["warn", { "skipBlankLines": true, "ignoreComments": true }],
     "no-unneeded-ternary": "error",
     "no-whitespace-before-property": "error",
+    "object-curly-spacing": ["warn", "always"],
     "one-var": ["warn", "never"],
     "quotes": ["warn", "single", { "allowTemplateLiterals": true }],
     "semi": ["error", "never"],
