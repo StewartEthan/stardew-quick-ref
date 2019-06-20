@@ -13,9 +13,11 @@ const Home = React.lazy(() => import('./Home'))
 
 const mainStyle = css`
   background-color: #fff;
+  display: grid;
   margin: 0 auto;
   max-width: 750px;
-  padding: 0 0.5em;
+  min-height: 100vh;
+  padding: 0 1em;
 `
 
 function App() {
