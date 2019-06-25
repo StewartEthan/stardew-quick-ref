@@ -1,10 +1,12 @@
+@import url('./styles/SVBold.css');
 @import url('./styles/SVThin.css');
 
 body {
   background-attachment: fixed;
   background-image: linear-gradient(to bottom, #002790, #0373dc);
+  color: #222220;
   font-family: 'SV Thin', sans-serif;
-  font-size: 28px;
+  font-size: 32px;
   margin: 0;
   padding: 0;
 }
@@ -12,10 +14,29 @@ body, body * {
   box-sizing: border-box;
 }
 a {
-  color: #002790;
+  color: #0040a9;
   text-decoration-color: transparent;
   transition: text-decoration-color 111ms ease-in-out;
 }
 a:hover {
   text-decoration-color: currentColor;
+}
+h1, h2, h3, h4, h5 {
+  font-family: 'SV Bold', sans-serif;
+}
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2.25rem;
+}
+h6 {
+  font-size: 1em;
+  margin: 1em 0;
+}
+
+@media screen and (min-width: 750px) {
+  body {
+    font-size: 28px;
+  }
 }
