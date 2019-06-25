@@ -1,8 +1,17 @@
-import React from 'react'
+/** @jsx jsx */
+
 import { Link } from 'react-router-dom'
+import { css, jsx } from '@emotion/core'
+
+const navStyle = css`
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+`
 
 export default function HomeLinks() {
-  return <nav>
+  return <nav css={navStyle}>
     <ul>
       <li><Link to="/villagers">Villagers</Link></li>
       <li><Link to="/buildings">Buildings</Link></li>
