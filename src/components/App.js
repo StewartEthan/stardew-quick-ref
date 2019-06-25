@@ -12,7 +12,8 @@ const Home = React.lazy(() => import('./Home'))
 // const Other = React.lazy(() => import('./Other'))
 
 const mainStyle = css`
-  background-color: #fff;
+  background-color: #f8ffff;
+  box-shadow: 0 10px 25px #222220;
   display: grid;
   margin: 0 auto;
   max-width: 750px;
