@@ -4,11 +4,12 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { css, jsx } from '@emotion/core'
 import LoadingIcon from './LoadingIcon'
+import Header from './Header'
 import { routes } from './routing/routes'
 import '../App.css'
 
 // All routing components should be lazy loaded like this
-const Home = React.lazy(() => import('./Home'))
+const Home = React.lazy(() => import(`./Home`))
 const routeComponents = routes.reduce((components, route) => {
   components[route.component] = React.lazy(() => import(`./${route.component}`))
   return components
@@ -28,20 +29,19 @@ const mainStyle = css`
 
 function App() {
   return (
-    // Header here
     <Router>
+      <Header />
       {/* All routes must go within suspense to support lazy loading */}
       <React.Suspense fallback={<LoadingIcon />}>
         <main css={mainStyle}>
           <Route exact path="/" component={Home} />
-          {/* <Route path="/other" component={Other} /> */}
           {routes.map(route =>
             <Route path={route.url} component={routeComponents[route.component]} key={route.label} />
           )}
         </main>
       </React.Suspense>
+      {/* Footer here */}
     </Router>
-    // Footer here
   )
 }
 
