@@ -75,7 +75,7 @@
     "no-whitespace-before-property": "error",
     "object-curly-spacing": ["warn", "always"],
     "one-var": ["warn", "never"],
-    "quotes": ["warn", "single", { "allowTemplateLiterals": true }],
+    "quotes": ["warn", "backtick", { "allowTemplateLiterals": true }],
     "semi": ["error", "never"],
     "semi-spacing": "error",
     "spaced-comment": ["warn", "always"],
