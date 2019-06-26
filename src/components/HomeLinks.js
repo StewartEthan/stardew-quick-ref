@@ -2,6 +2,7 @@
 
 import { Link } from 'react-router-dom'
 import { css, jsx } from '@emotion/core'
+import { routes } from './routing/routes'
 
 const navStyle = css`
   --nav-column-count: 1;
@@ -53,18 +54,9 @@ const navStyle = css`
 export default function HomeLinks() {
   return (
     <nav css={navStyle}>
-      <Link to="/villagers">Villagers</Link>
-      <Link to="/buildings">Buildings</Link>
-      <Link to="/skills">Skills</Link>
-      <Link to="/minerals">Minerals</Link>
-      <Link to="/artifacts">Artifacts</Link>
-      <Link to="/fish">Fish</Link>
-      <Link to="/festivals">Festivals</Link>
-      <Link to="/crops">Crops</Link>
-      <Link to="/artisan">Artisan</Link>
-      <Link to="/shops">Shops</Link>
-      <Link to="/monsters">Monsters</Link>
-      <Link to="/crafting">Crafting</Link>
+      {routes.map(route =>
+        <Link to={route.url} key={route.url}>{route.label}</Link>
+      )}
     </nav>
   )
 }

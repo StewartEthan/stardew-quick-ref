@@ -4,10 +4,15 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { css, jsx } from '@emotion/core'
 import LoadingIcon from './LoadingIcon'
+import { routes } from './routing/routes'
 import '../App.css'
 
 // All routing components should be lazy loaded like this
 const Home = React.lazy(() => import('./Home'))
+const routeComponents = routes.reduce((components, route) => {
+  components[route.component] = React.lazy(() => import(`./${route.component}`))
+  return components
+}, {})
 // const Home = React.lazy(() => new Promise(res => setTimeout(res, 2000)).then(() => import('./Home')))
 // const Other = React.lazy(() => import('./Other'))
 
@@ -30,6 +35,9 @@ function App() {
         <main css={mainStyle}>
           <Route exact path="/" component={Home} />
           {/* <Route path="/other" component={Other} /> */}
+          {routes.map(route =>
+            <Route path={route.url} component={routeComponents[route.component]} key={route.label} />
+          )}
         </main>
       </React.Suspense>
     </Router>
