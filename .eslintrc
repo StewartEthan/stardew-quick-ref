@@ -55,7 +55,7 @@
     "no-unused-vars": ["warn", { "args": "none" }],
     "no-use-before-define": ["warn", { "functions": false, "classes": false }],
 
-    "array-bracket-spacing": ["warn", "always", { "objectsInArrays": false, "arraysInArrays": false }],
+    "array-bracket-spacing": ["warn", "always", { "arraysInArrays": false }],
     "block-spacing": "warn",
     "brace-style": "warn",
     "comma-dangle": "off",
