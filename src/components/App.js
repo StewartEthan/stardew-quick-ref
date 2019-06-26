@@ -15,13 +15,12 @@ const routeComponents = routes.reduce((components, route) => {
   return components
 }, {})
 // const Home = React.lazy(() => new Promise(res => setTimeout(res, 2000)).then(() => import('./Home')))
-// const Other = React.lazy(() => import('./Other'))
 
 const mainStyle = css`
   background-color: #f8ffff;
-  box-shadow: 0 10px 25px #222220;
+  /* box-shadow: 0 10px 25px #222220; */
   display: grid;
-  margin: 0 auto;
+  margin: 0 1em;
   max-width: 750px;
   min-height: 100vh;
   padding: 0 1em;

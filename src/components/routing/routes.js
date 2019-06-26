@@ -1,3 +1,6 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
 export const routes = [
   { url: `/villagers`, label: `Villagers`, component: `Villagers` },
   { url: `/buildings`, label: `Buildings`, component: `Buildings` },
@@ -12,3 +15,7 @@ export const routes = [
   { url: `/monsters`, label: `Monsters`, component: `Monsters` },
   { url: `/crafting`, label: `Crafting`, component: `Crafting` },
 ]
+
+export const routeLinks = routes.map(route =>
+  <Link to={route.url} key={route.url}>{route.label}</Link>
+)

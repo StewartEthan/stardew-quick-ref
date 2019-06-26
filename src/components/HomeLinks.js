@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
-import { Link } from 'react-router-dom'
 import { css, jsx } from '@emotion/core'
-import { routes } from './routing/routes'
+import { routeLinks } from './routing/routes'
 
 const navStyle = css`
   --nav-column-count: 1;
@@ -54,9 +53,7 @@ const navStyle = css`
 export default function HomeLinks() {
   return (
     <nav css={navStyle}>
-      {routes.map(route =>
-        <Link to={route.url} key={route.url}>{route.label}</Link>
-      )}
+      {routeLinks}
     </nav>
   )
 }

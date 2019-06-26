@@ -1,11 +1,12 @@
 /** @jsx jsx */
 
-import { Link } from 'react-router-dom'
 import { css, jsx } from '@emotion/core'
-import { routes } from './routing/routes'
+import { routeLinks } from './routing/routes'
 
 const headerStyle = css`
-  background-color: #ddf;
+  background-image: linear-gradient(to bottom, #002790, #0373dc);
+  max-height: 100vh;
+  overflow: auto;
   padding: 0.5em 1em 0.25em;
   position: sticky;
   top: 0;
@@ -13,7 +14,10 @@ const headerStyle = css`
 
   nav {
     display: grid;
-    grid-auto-flow: column;
+
+    a {
+      color: #f8ffff;
+    }
   }
 `
 
@@ -21,9 +25,7 @@ export default function Header() {
   return (
     <header css={headerStyle}>
       <nav>
-        {routes.map(route =>
-          <Link to={route.url} key={route.url}>{route.label}</Link>
-        )}
+        {routeLinks}
       </nav>
     </header>
   )
