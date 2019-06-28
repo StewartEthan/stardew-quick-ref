@@ -18,6 +18,7 @@ const headerStyle = css`
 
     a {
       color: #f8ffff;
+      padding: 0.5em 0;
     }
   }
 `
