@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { css, jsx } from '@emotion/core'
+import { Link } from 'react-router-dom'
 import { routeLinks } from './routing/routes'
 
 const headerStyle = css`
@@ -25,6 +26,7 @@ export default function Header() {
   return (
     <header css={headerStyle}>
       <nav>
+        <Link to="/">Home</Link>
         {routeLinks}
       </nav>
     </header>
