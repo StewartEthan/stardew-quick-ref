@@ -5,7 +5,8 @@ import '../styles/SVBold.css'
 
 const style = css`
   align-content: center;
-  background-color: rgba(0,0,0,0.2);
+  /* background-color: rgba(0,0,0,0.2); */
+  background-image: linear-gradient(to bottom, #002790, #0373dc);
   color: #cfffff;
   display: grid;
   font-family: 'SV Bold', 'Courier New', Courier, monospace;
@@ -14,7 +15,7 @@ const style = css`
   justify-content: center;
   letter-spacing: 0.1rem;
   text-shadow: 3px 3px #00002a;
-  width: 100vw;
+  width: 100%;
   
   div {
     animation: pulse infinite cubic-bezier(0.455, 0.03, 0.515, 0.955) 1600ms;
