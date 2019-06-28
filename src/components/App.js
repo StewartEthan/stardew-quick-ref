@@ -10,11 +10,11 @@ import '../App.css'
 
 // All routing components should be lazy loaded like this
 const Home = React.lazy(() => import(`./Home`))
+// const Home = React.lazy(() => new Promise(res => setTimeout(res, 20000)).then(() => import(`./Home`)))
 const routeComponents = routes.reduce((components, route) => {
   components[route.component] = React.lazy(() => import(`./${route.component}`))
   return components
 }, {})
-// const Home = React.lazy(() => new Promise(res => setTimeout(res, 2000)).then(() => import('./Home')))
 
 const mainStyle = css`
   background-color: #f8ffff;
