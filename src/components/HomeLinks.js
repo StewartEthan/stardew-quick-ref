@@ -10,6 +10,7 @@ const navStyle = css`
   border-left-width: calc(0.5em - 2px);
   border-right-width: calc(0.5em - 2px);
   display: grid;
+  grid-row-gap: 1.5em;
   grid-template-columns: repeat(var(--nav-column-count), 1fr);
   justify-content: space-between;
   margin: 0.5em auto 2em;
@@ -19,7 +20,7 @@ const navStyle = css`
   width: calc(100% + 2em);
   a {
     color: #211122;
-    padding: 0.75em 0;
+    /* padding: 0.75em 0; */
     text-align: center;
   }
   &::before, &::after {
