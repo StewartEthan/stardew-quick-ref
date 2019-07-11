@@ -6,5 +6,4 @@ export default function Villagers() {
       <h1>Villagers</h1>
     </div>
   )
-  // return <div>Villagers component</div>
 }
