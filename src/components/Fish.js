@@ -1,5 +1,9 @@
 import React from 'react'
 
 export default function Fish() {
-  return <div>Fish component</div>
+  return (
+    <div>
+      <h1>Fish</h1>
+    </div>
+  )
 }
