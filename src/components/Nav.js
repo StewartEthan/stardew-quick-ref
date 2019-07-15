@@ -20,7 +20,7 @@ const navStyle = css`
   right: -1em;
   top: 100%;
   transform: translateX(-1em);
-  transition: width 150ms ease-in-out, border-width 150ms ease-out;
+  transition: width 130ms ease-in-out, border-width 130ms ease-out;
   width: 100vw;
 
   &.closed {
