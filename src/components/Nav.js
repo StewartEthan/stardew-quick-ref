@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { css, jsx } from '@emotion/core'
+import PropTypes from 'prop-types'
 import { routeLinks } from './routing/routes'
 
 const navStyle = css`
@@ -13,11 +14,27 @@ const navStyle = css`
   grid-row-gap: 1.5em;
   grid-template-columns: repeat(var(--nav-column-count), 1fr);
   justify-content: space-between;
-  margin: 0.5em auto 2em;
+  margin: 0;
   padding: 1em 0;
-  position: relative;
+  position: absolute;
+  right: -1em;
+  top: 100%;
   transform: translateX(-1em);
-  width: calc(100% + 2em);
+  transition: width 120ms ease-in-out;
+  width: 100vw;
+
+  &.closed {
+    overflow: hidden;
+    transform: translateX(0);
+    white-space: pre;
+    width: 0;
+
+    a {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
   a {
     color: #211122;
     /* padding: 0.75em 0; */
@@ -51,10 +68,14 @@ const navStyle = css`
   }
 `
 
-export default function HomeLinks() {
+export default function Nav({ open }) {
   return (
-    <nav css={navStyle}>
+    <nav css={navStyle} className={open ? `open` : `closed`}>
       {routeLinks}
     </nav>
   )
+}
+
+Nav.propTypes = {
+  open: PropTypes.bool.isRequired
 }

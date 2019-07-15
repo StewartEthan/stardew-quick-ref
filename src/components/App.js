@@ -18,9 +18,9 @@ const routeComponents = routes.reduce((components, route) => {
 
 const mainStyle = css`
   background-color: #f8ffff;
-  /* box-shadow: 0 10px 25px #222220; */
+  box-shadow: 0 10px 25px #222220;
   display: grid;
-  margin: 0 1em;
+  margin: 0 auto;
   max-width: 750px;
   min-height: 100vh;
   padding: 0 1em;
