@@ -47,6 +47,7 @@ const navStyle = css`
     background-color: #57656b;
     border: 3px solid #264651;
     border-radius: 50%;
+    box-shadow: 1px 1px 3px #222220;
     content: '';
     height: var(--size);
     position: absolute;

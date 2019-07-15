@@ -11,7 +11,7 @@ const style = css`
   display: grid;
   font-family: 'SV Bold', 'Courier New', Courier, monospace;
   font-size: 2rem;
-  height: 100vh;
+  height: 100%;
   justify-content: center;
   letter-spacing: 0.1rem;
   text-shadow: 3px 3px #00002a;

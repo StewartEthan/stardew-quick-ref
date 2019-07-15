@@ -22,7 +22,6 @@ const mainStyle = css`
   display: grid;
   margin: 0 auto;
   max-width: 750px;
-  min-height: 100vh;
   padding: 0 1em;
 `
 
@@ -31,14 +30,14 @@ function App() {
     <Router>
       <Header />
       {/* All routes must go within suspense to support lazy loading */}
-      <React.Suspense fallback={<LoadingIcon />}>
-        <main css={mainStyle}>
+      <main css={mainStyle}>
+        <React.Suspense fallback={<LoadingIcon />}>
           <Route exact path="/" component={Home} />
           {routes.map(route =>
             <Route path={route.url} component={routeComponents[route.component]} key={route.label} />
           )}
-        </main>
-      </React.Suspense>
+        </React.Suspense>
+      </main>
       {/* Footer here */}
     </Router>
   )

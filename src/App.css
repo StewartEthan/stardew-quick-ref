@@ -38,8 +38,9 @@ h6 {
   margin: 1em 0;
 }
 #root {
-  /* display: grid;
-  grid-template-columns: minmax(200px, auto) 1fr; */
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
 }
 
 @media screen and (min-width: 750px) {

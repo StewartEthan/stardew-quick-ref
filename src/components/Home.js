@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div>
       <p>
-        Welcome to the Stardew Valley Quick Reference! This is intended to be an easy-to-navigate quick lookup tool for Stardew Valley. Click any of the links below to get started, or use the navigation in the header.
+        Welcome to the Stardew Valley Quick Reference! This is intended to be an easy-to-navigate quick lookup tool for Stardew Valley. Click the Menu button in the header to get started.
       </p>
       <h2>Why I made this</h2>
       <p>
