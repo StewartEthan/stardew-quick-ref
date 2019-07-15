@@ -12,7 +12,8 @@ const headerStyle = css`
   color: #f8ffff;
   display: grid;
   grid-column-gap: 0.5em;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
   max-height: 100vh;
   padding: 0.375em 1em;
   position: sticky;
