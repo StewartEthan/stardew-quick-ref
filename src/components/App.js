@@ -21,8 +21,9 @@ const mainStyle = css`
   box-shadow: 0 10px 25px #222220;
   display: grid;
   margin: 0 auto;
-  max-width: 750px;
+  max-width: 750px; /* Ensure the content can't get too wide */
   padding: 0 1em;
+  width: 100vw; /* Allows the content to fill the page */
 `
 
 function App() {
