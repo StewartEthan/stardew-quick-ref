@@ -31,14 +31,14 @@ function App() {
     <Router>
       <Header />
       {/* All routes must go within suspense to support lazy loading */}
-      <main css={mainStyle}>
-        <React.Suspense fallback={<LoadingIcon />}>
+      <React.Suspense fallback={<LoadingIcon />}>
+        <main css={mainStyle}>
           <Route exact path="/" component={Home} />
           {routes.map(route =>
             <Route path={route.url} component={routeComponents[route.component]} key={route.label} />
           )}
-        </React.Suspense>
-      </main>
+        </main>
+      </React.Suspense>
       {/* Footer here */}
     </Router>
   )
