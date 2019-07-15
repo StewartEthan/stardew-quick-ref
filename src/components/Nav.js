@@ -17,17 +17,17 @@ const navStyle = css`
   margin: 0;
   padding: 1em 0;
   position: absolute;
-  right: -1em;
+  right: 0;
   top: 100%;
-  transform: translateX(-1em);
-  transition: width 130ms ease-in-out, border-width 130ms ease-out;
+  /* transform: translateX(-1em); */
+  transition: width 130ms ease-in-out, border-width 130ms ease-out, transform 200ms ease-in-out;
   width: 100vw;
 
   &.closed {
     border-left-width: 0;
     border-right-width: 0;
-    overflow: hidden;
-    transform: translateX(0);
+    /* overflow: hidden; */
+    transform: translateX(100%);
     white-space: pre;
     width: 0;
 
@@ -42,13 +42,18 @@ const navStyle = css`
     /* padding: 0.75em 0; */
     text-align: center;
   }
+  &.open {
+    &::before, &::after {
+      content: '';
+    }
+  }
   &::before, &::after {
     --size: 0.75em;
     background-color: #57656b;
     border: 3px solid #264651;
     border-radius: 50%;
     box-shadow: 1px 1px 3px #222220;
-    content: '';
+    /* content: ''; */
     height: var(--size);
     position: absolute;
     top: calc(var(--size) / -2);
