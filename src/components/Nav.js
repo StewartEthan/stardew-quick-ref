@@ -70,14 +70,15 @@ const navStyle = css`
   }
 `
 
-export default function Nav({ open }) {
+export default function Nav({ open, setOpen }) {
   return (
-    <nav css={navStyle} className={open ? `open` : `closed`}>
+    <nav css={navStyle} className={open ? `open` : `closed`} onClick={evt => setOpen(evt.target.constructor !== HTMLAnchorElement)}>
       {routeLinks}
     </nav>
   )
 }
 
 Nav.propTypes = {
-  open: PropTypes.bool.isRequired
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired
 }

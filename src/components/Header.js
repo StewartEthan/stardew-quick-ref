@@ -22,16 +22,19 @@ const headerStyle = css`
   a {
     color: #f8ffff;
   }
+  & > a:hover {
+    text-decoration-color: transparent;
+  }
   .heading {
     margin: 0;
   }
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 650px) {
     .mobile-heading {
       display: none;
     }
   }
-  @media screen and (max-width: 599px) {
+  @media screen and (max-width: 649px) {
     .desktop-heading {
       display: none;
     }
@@ -43,6 +46,14 @@ const menuButtonStyle = css`
   color: #f8ffff;
   font-family: inherit;
   font-size: 2rem;
+  padding-top: 0.5rem;
+  text-decoration: underline overline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 120ms ease-in-out;
+
+  &:hover {
+    text-decoration-color: currentColor;
+  }
 `
 
 export default function Header() {
@@ -50,7 +61,7 @@ export default function Header() {
   return (
     <>
       <header css={headerStyle}>
-        <Link to="/">
+        <Link to="/" onClick={() => setMenuOpen(false)}>
           <h1 className="heading desktop-heading">Stardew Valley Reference</h1>
           <h1 className="heading mobile-heading">SDV Ref</h1>
         </Link>
@@ -58,7 +69,7 @@ export default function Header() {
           {/* MOBILE ICON GOES HERE */}
           <span>Menu</span>
         </button>
-        <Nav open={menuOpen}>
+        <Nav open={menuOpen} setOpen={setMenuOpen}>
           {routeLinks}
         </Nav>
       </header>
