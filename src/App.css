@@ -21,6 +21,9 @@ a {
 a:hover {
   text-decoration-color: currentColor;
 }
+a, button, input[type=submit], input[type=reset] {
+  cursor: pointer;
+}
 h1, h2, h3, h4, h5 {
   font-family: 'SV Bold', sans-serif;
 }

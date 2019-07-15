@@ -7,17 +7,22 @@ import { routeLinks } from './routing/routes'
 import Nav from './Nav'
 
 const headerStyle = css`
-  /* background-image: linear-gradient(to bottom, #002790, #0373dc); */
+  align-items: center;
   background-color: #222220;
   color: #f8ffff;
+  display: grid;
+  grid-column-gap: 0.5em;
+  grid-template-columns: 1fr auto;
   max-height: 100vh;
-  padding: 0.3em 1em;
+  padding: 0.375em 1em;
   position: sticky;
   top: 0;
   z-index: 1;
 
-  .heading {
+  a {
     color: #f8ffff;
+  }
+  .heading {
     margin: 0;
   }
 
@@ -32,6 +37,13 @@ const headerStyle = css`
     }
   }
 `
+const menuButtonStyle = css`
+  background-color: transparent;
+  border: none;
+  color: #f8ffff;
+  font-family: inherit;
+  font-size: 2rem;
+`
 
 export default function Header() {
   const [ menuOpen, setMenuOpen ] = React.useState(false)
@@ -42,7 +54,7 @@ export default function Header() {
           <h1 className="heading desktop-heading">Stardew Valley Reference</h1>
           <h1 className="heading mobile-heading">SDV Ref</h1>
         </Link>
-        <button onClick={() => setMenuOpen(!menuOpen)}>
+        <button css={menuButtonStyle} onClick={() => setMenuOpen(!menuOpen)}>
           {/* MOBILE ICON GOES HERE */}
           <span>Menu</span>
         </button>
