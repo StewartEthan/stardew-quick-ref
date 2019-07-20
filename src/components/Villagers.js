@@ -1,14 +1,45 @@
+/** @jsx jsx */
+
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { css, jsx } from '@emotion/core'
 import Villager from './villagers/Villager'
 import { villagerInfo } from './villagers/villagerInfo'
+// import { useHeaderHeight } from './hooks/useHeaderHeight'
+import { GlobalContext } from './context/GlobalContext'
+
+const villagerListStyle = css`
+  display: grid;
+  grid-row-gap: 1em;
+  justify-items: start;
+`
 
 export default function Villagers({ match }) {
+  const { villager: villagerName = `` } = match.params
+  const currentRef = React.useRef(null)
+  const [ globalState ] = React.useContext(GlobalContext)
+  const { headerHeight } = globalState
+  console.log(headerHeight)
+  React.useEffect(() => {
+    if (currentRef && currentRef.current) {
+      window.scrollTo(0, currentRef.current.offsetTop - headerHeight)
+    }
+  }, [ currentRef, headerHeight ])
   return (
     <div>
       <h1>Villagers</h1>
-      <p>Ea in ut magna occaecat non adipisicing veniam aliquip ullamco officia amet ullamco sint nostrud. Dolor aliquip sunt non consequat nostrud do. Officia et ad qui excepteur voluptate officia. Mollit adipisicing incididunt labore voluptate irure Lorem non laboris voluptate ea irure incididunt magna. Consectetur nisi mollit do deserunt ex adipisicing ad. Sit ex duis consequat adipisicing sint officia qui laboris Lorem anim eiusmod enim ea nisi. Amet labore ea laborum ullamco.</p>
+      <p>Please note that this page only includes marriage candidates and the NPCs who can be given gifts. If you're looking for information about any of the other NPCs that aren't in the list below, such as Marlon or Mr. Qi, they can be found <a href="https://stardewvalleywiki.com/Villagers#Non-giftable_NPCs" target="_blank" rel="noreferrer noopener">on the official wiki</a>.</p>
+      {/* TODO: Sorting controls */}
+      <div css={villagerListStyle}>
+        {
+          Object.entries(villagerInfo).map(([ key, villager ]) => {
+            if (villager.key === villagerName) {
+              return <Villager key={key} villager={villager} view="full" ref={currentRef} />
+            }
+            return <Villager key={key} villager={villager} view="minimal" />
+          })
+        }
+      </div>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import { css, jsx } from '@emotion/core'
 import { Link } from 'react-router-dom'
 import { routeLinks } from './routing/routes'
 import Nav from './Nav'
+import { useHeaderHeight } from './hooks/useHeaderHeight'
 
 const headerStyle = css`
   align-items: center;
@@ -59,9 +60,11 @@ const menuButtonStyle = css`
 
 export default function Header() {
   const [ menuOpen, setMenuOpen ] = React.useState(false)
+  const [ headerHeight, headerRef ] = useHeaderHeight()
+  console.log(`height in header`, headerHeight)
   return (
     <>
-      <header css={headerStyle}>
+      <header css={headerStyle} ref={headerRef}>
         <Link to="/" onClick={() => setMenuOpen(false)}>
           <h1 className="heading desktop-heading">Stardew Valley Reference</h1>
           <h1 className="heading mobile-heading">SDV Ref</h1>

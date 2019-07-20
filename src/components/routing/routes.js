@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export const routes = [
-  { url: `/villagers`, label: `Villagers`, component: `Villagers` },
+  { url: `/villagers/:villager?`, label: `Villagers`, component: `Villagers` },
   { url: `/bundles`, label: `Bundles`, component: `Bundles` },
   { url: `/skills`, label: `Skills`, component: `Skills` },
   { url: `/minerals`, label: `Minerals`, component: `Minerals` },
