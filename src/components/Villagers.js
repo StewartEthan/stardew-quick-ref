@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import { css, jsx } from '@emotion/core'
 import Villager from './villagers/Villager'
 import { villagerInfo } from './villagers/villagerInfo'
-// import { useHeaderHeight } from './hooks/useHeaderHeight'
 import { GlobalContext } from './context/GlobalContext'
 
 const villagerListStyle = css`
