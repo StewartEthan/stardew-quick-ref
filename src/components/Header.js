@@ -61,7 +61,6 @@ const menuButtonStyle = css`
 export default function Header() {
   const [ menuOpen, setMenuOpen ] = React.useState(false)
   const [ headerHeight, headerRef ] = useHeaderHeight()
-  console.log(`height in header`, headerHeight)
   return (
     <>
       <header css={headerStyle} ref={headerRef}>

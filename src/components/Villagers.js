@@ -18,7 +18,6 @@ export default function Villagers({ match }) {
   const currentRef = React.useRef(null)
   const [ globalState ] = React.useContext(GlobalContext)
   const { headerHeight } = globalState
-  console.log(headerHeight)
   React.useEffect(() => {
     if (currentRef && currentRef.current) {
       window.scrollTo(0, currentRef.current.offsetTop - headerHeight)

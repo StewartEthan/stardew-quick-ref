@@ -17,5 +17,5 @@ export const routes = [
 ]
 
 export const routeLinks = routes.map(route =>
-  <Link to={route.url} key={route.url}>{route.label}</Link>
+  <Link to={route.url.replace(/\/:.*\?/g, ``)} key={route.url}>{route.label}</Link>
 )
