@@ -7,7 +7,6 @@ import { GlobalProvider } from './context/GlobalContext'
 import LoadingIcon from './LoadingIcon'
 import Header from './Header'
 import { routes } from './routing/routes'
-import { useHeaderHeight } from './hooks/useHeaderHeight'
 import '../App.css'
 
 // All routing components should be lazy loaded like this
