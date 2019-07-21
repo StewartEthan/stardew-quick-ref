@@ -3,6 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css, jsx } from '@emotion/core'
+import Select from 'react-select'
 
 import { GlobalContext } from '../context/GlobalContext'
 import Villager from './Villager'
@@ -10,8 +11,9 @@ import { villagerInfo } from './villagerInfo'
 
 const villagerControlStyle = css`
   display: grid;
+  font-size: 0.75em;
   grid-column-gap: 0.5em;
-  grid-template-columns: auto auto;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: start;
   margin-bottom: 1em;
 `
@@ -45,6 +47,7 @@ const sortFns = {
   marriage: sortMarriage
 }
 function getVillagers(sortType, sortOrder) {
+  console.log({ sortType, sortOrder })
   const sortFn = sortFns[sortType] || (() => 0)
   return Object.values(villagerInfo).sort((a, b) => {
     return sortOrder === `desc` ? sortFn(b, a) : sortFn(a, b)
@@ -63,18 +66,20 @@ export default function VillagerList({ currentVillager }) {
       window.scrollTo(0, currentRef.current.offsetTop - headerHeight)
     }
   }, [ currentRef, headerHeight ])
+  const sortTypeOptions = [
+    { value: `alpha`, label: `Sort Alphabetically` },
+    { value: `bday`, label: `Sort by Birthday` },
+    { value: `marriage`, label: `Sort by Marriage Status` },
+  ]
+  const sortOrderOptions = [
+    { value: `asc`, label: `Sort Ascending` },
+    { value: `desc`, label: `Sort Descending` },
+  ]
   return (
     <>
       <div css={villagerControlStyle}>
-        <select onChange={evt => setSortType(evt.target.value)}>
-          <option value="alpha" selected>Sort Alphabetically</option>
-          <option value="bday">Sort by Birthday</option>
-          <option value="marriage">Sort by Marriage Status</option>
-        </select>
-        <select onChange={evt => setSortOrder(evt.target.value)}>
-          <option value="asc" selected>Sort Ascending</option>
-          <option value="desc">Sort Descending</option>
-        </select>
+        <Select onChange={option => setSortType(option.value)} defaultValue={sortTypeOptions[0]} options={sortTypeOptions} />
+        <Select onChange={option => setSortOrder(option.value)} defaultValue={sortOrderOptions[0]} options={sortOrderOptions} />
       </div>
       <div css={villagerListStyle}>
         {
