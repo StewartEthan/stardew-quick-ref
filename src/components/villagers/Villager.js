@@ -27,7 +27,6 @@ const fullStyle = css`
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto 1fr auto;
   justify-self: stretch;
-  max-width: 20em;
   padding: 0.375em;
   text-shadow: 1px 1px 4px black;
 
