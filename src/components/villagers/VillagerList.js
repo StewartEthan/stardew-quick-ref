@@ -16,7 +16,6 @@ const villagerListStyle = css`
 `
 
 function sortAlpha(villagerA, villagerB) {
-  console.log({ a: villagerA, b: villagerB })
   return villagerA.key < villagerB.key ? -1 : 1
 }
 const seasons = [ `spring`,`summer`,`fall`,`winter` ]
