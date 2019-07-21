@@ -15,15 +15,30 @@ const villagerListStyle = css`
   padding-bottom: 1em;
 `
 
-function getVillagers(sortFn) {
-  return Object.entries(villagerInfo)// .sort(sortFn)
+function sortAlpha(villagerA, villagerB) {
+  console.log({ a: villagerA, b: villagerB })
+  return villagerA.key < villagerB.key ? -1 : 1
 }
-// function sortAlpha(villagerA, villagerB) {}
-// function sortBirthday(villagerA, villagerB) {}
-// function sortMarriage(villagerA, villagerB) {}
+function sortBirthday(villagerA, villagerB) {}
+function sortMarriage(villagerA, villagerB) {}
+const sortFns = {
+  alpha: sortAlpha,
+  bday: sortBirthday,
+  marriage: sortMarriage
+}
+function getVillagers(sortType, sortOrder) {
+  const sortFn = sortFns[sortType] || (() => 0)
+  console.log({ sortType, sortOrder, sortFn: sortFn.toString() })
+  return Object.values(villagerInfo).sort((a, b) => {
+    return sortOrder === `desc` ? sortFn(b, a) : sortFn(a, b)
+  })
+
+}
 
 export default function VillagerList({ currentVillager }) {
   const currentRef = React.useRef(null)
+  const [ sortType, setSortType ] = React.useState(`alpha`)
+  const [ sortOrder, setSortOrder ] = React.useState(`asc`)
   const [ globalState ] = React.useContext(GlobalContext)
   const { headerHeight } = globalState
   React.useEffect(() => {
@@ -35,11 +50,11 @@ export default function VillagerList({ currentVillager }) {
     // Controls somewhere
     <div css={villagerListStyle}>
       {
-        getVillagers(villagerInfo).map(([ key, villager ]) => {
+        getVillagers(sortType, sortOrder).map(villager => {
           if (villager.key === currentVillager) {
-            return <Villager key={key} villager={villager} view="full" ref={currentRef} />
+            return <Villager key={villager.key} villager={villager} view="full" ref={currentRef} />
           }
-          return <Villager key={key} villager={villager} view="minimal" />
+          return <Villager key={villager.key} villager={villager} view="minimal" />
         })
       }
     </div>
