@@ -40,7 +40,6 @@ const sortFns = {
 }
 function getVillagers(sortType, sortOrder) {
   const sortFn = sortFns[sortType] || (() => 0)
-  console.log({ sortType, sortOrder, sortFn: sortFn.toString() })
   return Object.values(villagerInfo).sort((a, b) => {
     return sortOrder === `desc` ? sortFn(b, a) : sortFn(a, b)
   })
