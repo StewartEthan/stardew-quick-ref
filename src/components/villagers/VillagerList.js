@@ -19,8 +19,20 @@ function sortAlpha(villagerA, villagerB) {
   console.log({ a: villagerA, b: villagerB })
   return villagerA.key < villagerB.key ? -1 : 1
 }
-function sortBirthday(villagerA, villagerB) {}
-function sortMarriage(villagerA, villagerB) {}
+const seasons = [ `spring`,`summer`,`fall`,`winter` ]
+function sortBirthday(villagerA, villagerB) {
+  const [ seasonNameA, dayA ] = villagerA.birthday.split(` `)
+  const [ seasonNameB, dayB ] = villagerB.birthday.split(` `)
+  const seasonA = seasons.indexOf(seasonNameA.toLowerCase())
+  const seasonB = seasons.indexOf(seasonNameB.toLowerCase())
+  if (seasonA !== seasonB) return seasonA - seasonB
+  return Number(dayA) - Number(dayB)
+}
+function sortMarriage(villagerA, villagerB) {
+  if (villagerA.marriage && !villagerB.marriage) return -1
+  if (!villagerA.marriage && villagerB.marriage) return 1
+  return villagerA.key < villagerB.key ? -1 : 1
+}
 const sortFns = {
   alpha: sortAlpha,
   bday: sortBirthday,
@@ -47,17 +59,29 @@ export default function VillagerList({ currentVillager }) {
     }
   }, [ currentRef, headerHeight ])
   return (
-    // Controls somewhere
-    <div css={villagerListStyle}>
-      {
-        getVillagers(sortType, sortOrder).map(villager => {
-          if (villager.key === currentVillager) {
-            return <Villager key={villager.key} villager={villager} view="full" ref={currentRef} />
-          }
-          return <Villager key={villager.key} villager={villager} view="minimal" />
-        })
-      }
-    </div>
+    <>
+      <div>
+        <select onChange={evt => setSortType(evt.target.value)}>
+          <option value="alpha" selected>Sort Alphabetically</option>
+          <option value="bday">Sort by Birthday</option>
+          <option value="marriage">Sort by Marriage Status</option>
+        </select>
+        <select onChange={evt => setSortOrder(evt.target.value)}>
+          <option value="asc" selected>Sort Ascending</option>
+          <option value="desc">Sort Descending</option>
+        </select>
+      </div>
+      <div css={villagerListStyle}>
+        {
+          getVillagers(sortType, sortOrder).map(villager => {
+            if (villager.key === currentVillager) {
+              return <Villager key={villager.key} villager={villager} view="full" ref={currentRef} />
+            }
+            return <Villager key={villager.key} villager={villager} view="minimal" />
+          })
+        }
+      </div>
+    </>
   )
 }
 
