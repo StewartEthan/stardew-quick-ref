@@ -15,7 +15,7 @@ const minimalStyle = css`
   grid-template-columns: auto auto;
 `
 const fullStyle = css`
-  background-color: #7a3a00;
+  background-color: #363636;
   border-radius: 4px;
   color: #f8ffff;
   display: grid;
@@ -23,6 +23,7 @@ const fullStyle = css`
   grid-template-areas:
     "portrait name hide"
     "portrait bday ."
+    "portrait marriage ."
     "gift gift gift";
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto 1fr auto;
