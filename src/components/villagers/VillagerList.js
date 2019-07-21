@@ -12,7 +12,15 @@ const villagerListStyle = css`
   display: grid;
   grid-row-gap: 1em;
   justify-items: start;
+  padding-bottom: 1em;
 `
+
+function getVillagers(sortFn) {
+  return Object.entries(villagerInfo)// .sort(sortFn)
+}
+// function sortAlpha(villagerA, villagerB) {}
+// function sortBirthday(villagerA, villagerB) {}
+// function sortMarriage(villagerA, villagerB) {}
 
 export default function VillagerList({ currentVillager }) {
   const currentRef = React.useRef(null)
@@ -27,7 +35,7 @@ export default function VillagerList({ currentVillager }) {
     // Controls somewhere
     <div css={villagerListStyle}>
       {
-        Object.entries(villagerInfo).map(([ key, villager ]) => {
+        getVillagers(villagerInfo).map(([ key, villager ]) => {
           if (villager.key === currentVillager) {
             return <Villager key={key} villager={villager} view="full" ref={currentRef} />
           }

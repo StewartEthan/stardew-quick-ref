@@ -31,7 +31,7 @@ const fullStyle = css`
   padding: 0.375em;
   text-shadow: 1px 1px 4px black;
 
-  img {
+  & > img {
     grid-area: portrait;
   }
   .name {
@@ -40,6 +40,9 @@ const fullStyle = css`
   }
   .bday {
     grid-area: bday;
+  }
+  .marriage {
+    grid-area: marriage;
   }
   a {
     color: currentColor;
@@ -68,7 +71,7 @@ const fullStyle = css`
 `
 const marriageCommonStyle = css`
   position: relative;
-  .mermaid-pendant, .portrait::before {
+  .mermaid-pendant {
     --pendant-base-size: 48px;
     --pendant-size: var(--pendant-base-size);
     height: var(--pendant-size);
@@ -80,22 +83,12 @@ const marriageMinimalStyle = css`
     --pendant-size: calc(var(--pendant-base-size) / 2);
   }
 `
-const marriageFullStyle = css`
-  .portrait::before {
-    background-image: url(${mermaidPendant});
-    content: '';
-    left: 0;
-    position: absolute;
-    transform: scale(0.5);
-  }
-
-`
 
 export default React.forwardRef(({ villager, view = `minimal` }, ref) => {
   const styles = [ view === `minimal` ? minimalStyle : fullStyle ]
   if (villager.marriage) {
     styles.push(marriageCommonStyle)
-    styles.push(view === `minimal` ? marriageMinimalStyle : marriageFullStyle)
+    if (view === `minimal`) styles.push(marriageMinimalStyle)
   }
   if (view === `minimal`) {
     return (
@@ -104,10 +97,24 @@ export default React.forwardRef(({ villager, view = `minimal` }, ref) => {
         {villager.marriage ? <img className="mermaid-pendant" src={mermaidPendant} alt="Can be married by player" /> : null}
       </div>)
   }
+  const marriageIndicatorStyle = css`
+    position: relative;
+    &::after {
+      color: #7cfc00;
+      content: '${villager.marriage ? `✓`: `🚫`}';
+      font-size: 24px;
+      left: 36px;
+      position: absolute;
+      top: 24px;
+    }
+  `
   return <div css={styles} ref={ref}>
     <VillagerPortrait villager={villager.key} alt={`Portrait of ${villager.name}`} marriage={villager.marriage} placeholder={personPlaceholder} />
     <span className="name">{villager.name}</span>
     <span className="bday">{villager.birthday}</span>
+    <span className="marriage" css={marriageIndicatorStyle} title={`${villager.name} can${villager.marriage ? `` : `not`} be married by the player`}>
+      <img className="mermaid-pendant" src={mermaidPendant} alt={`${villager.name} can${villager.marriage ? `` : `not`} be married by the player`} />
+    </span>
     <Link to="/villagers">Hide</Link>
   </div>
 })
