@@ -8,6 +8,13 @@ import { GlobalContext } from '../context/GlobalContext'
 import Villager from './Villager'
 import { villagerInfo } from './villagerInfo'
 
+const villagerControlStyle = css`
+  display: grid;
+  grid-column-gap: 0.5em;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  margin-bottom: 1em;
+`
 const villagerListStyle = css`
   display: grid;
   grid-row-gap: 1em;
@@ -58,7 +65,7 @@ export default function VillagerList({ currentVillager }) {
   }, [ currentRef, headerHeight ])
   return (
     <>
-      <div>
+      <div css={villagerControlStyle}>
         <select onChange={evt => setSortType(evt.target.value)}>
           <option value="alpha" selected>Sort Alphabetically</option>
           <option value="bday">Sort by Birthday</option>
