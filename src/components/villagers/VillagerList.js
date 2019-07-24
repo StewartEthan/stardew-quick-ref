@@ -75,11 +75,14 @@ export default function VillagerList({ currentVillager }) {
     { value: `asc`, label: `Sort Ascending` },
     { value: `desc`, label: `Sort Descending` },
   ]
+  const selectStyleOverrides = {
+    control: styles => ({ ...styles, backgroundColor: `#f8ffff` }),
+  }
   return (
     <>
       <div css={villagerControlStyle}>
-        <Select onChange={option => setSortType(option.value)} defaultValue={sortTypeOptions[0]} options={sortTypeOptions} />
-        <Select onChange={option => setSortOrder(option.value)} defaultValue={sortOrderOptions[0]} options={sortOrderOptions} />
+        <Select onChange={option => setSortType(option.value)} defaultValue={sortTypeOptions[0]} options={sortTypeOptions} styles={selectStyleOverrides} />
+        <Select onChange={option => setSortOrder(option.value)} defaultValue={sortOrderOptions[0]} options={sortOrderOptions} styles={selectStyleOverrides} />
       </div>
       <div css={villagerListStyle}>
         {
