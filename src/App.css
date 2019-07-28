@@ -39,6 +39,17 @@ h6 {
   font-size: 1em;
   margin: 1em 0;
 }
+input {
+  background-color: #f8ffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1em;
+  padding: 0.5em 0.5em 0.25em;
+}
+input::placeholder {
+  color: #888880;
+}
 #root {
   display: grid;
   grid-template-rows: auto 1fr;
