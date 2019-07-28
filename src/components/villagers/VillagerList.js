@@ -75,14 +75,24 @@ export default function VillagerList({ currentVillager }) {
     { value: `asc`, label: `Sort Ascending` },
     { value: `desc`, label: `Sort Descending` },
   ]
+  function getOptionBackground(state) {
+    if (state.isSelected) return { backgroundImage: `linear-gradient(to bottom, #002790, #0373dc)` }
+    if (state.isFocused) return { backgroundColor: `rgba(3, 115, 220, 0.25)` }
+    return { backgroundColor: `#f8ffff` }
+  }
   const selectStyleOverrides = {
     control: styles => ({ ...styles, backgroundColor: `#f8ffff` }),
+    option: (styles, state) => ({
+      ...styles,
+      ...getOptionBackground(state),
+      color: state.isSelected ? `#f8ffff` : `#222220`
+    }),
   }
   return (
     <>
       <div css={villagerControlStyle}>
-        <Select onChange={option => setSortType(option.value)} defaultValue={sortTypeOptions[0]} options={sortTypeOptions} styles={selectStyleOverrides} />
-        <Select onChange={option => setSortOrder(option.value)} defaultValue={sortOrderOptions[0]} options={sortOrderOptions} styles={selectStyleOverrides} />
+        <Select onChange={option => setSortType(option.value)} defaultValue={sortTypeOptions[0]} options={sortTypeOptions} styles={selectStyleOverrides} isSearchable={false} />
+        <Select onChange={option => setSortOrder(option.value)} defaultValue={sortOrderOptions[0]} options={sortOrderOptions} styles={selectStyleOverrides} isSearchable={false} />
       </div>
       <div css={villagerListStyle}>
         {
