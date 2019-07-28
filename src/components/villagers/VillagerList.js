@@ -12,10 +12,26 @@ import { villagerInfo } from './villagerInfo'
 const villagerControlStyle = css`
   display: grid;
   font-size: 0.75em;
-  grid-column-gap: 0.5em;
+  grid-gap: 0.5em;
+  grid-template-areas: "filter filter" "sort-type sort-order";
   grid-template-columns: repeat(2, 1fr);
   justify-content: start;
   margin-bottom: 1em;
+
+  label {
+    grid-area: filter;
+
+    input {
+      appearance: none;
+      width: 100%;
+
+      &::-webkit-search-cancel-button {
+        cursor: pointer;
+        margin-bottom: 0.25em;
+        transform: scale(1.5);
+      }
+    }
+  }
 `
 const villagerListStyle = css`
   display: grid;
@@ -46,12 +62,20 @@ const sortFns = {
   bday: sortBirthday,
   marriage: sortMarriage
 }
-function getVillagers(sortType, sortOrder) {
-  console.log({ sortType, sortOrder })
+function getVillagers(sortType, sortOrder, filterParam = ``) {
   const sortFn = sortFns[sortType] || (() => 0)
-  return Object.values(villagerInfo).sort((a, b) => {
-    return sortOrder === `desc` ? sortFn(b, a) : sortFn(a, b)
-  })
+  const filter = new RegExp(filterParam, `i`)
+  return Object.values(villagerInfo)
+    // TODO: Potential future improvements:
+    // - fuzzy match
+    // - search by gift prefs
+    .filter(villager => {
+      const { name, birthday, key } = villager
+      return [ key, name, birthday ].some(prop => filter.test(prop))
+    })
+    .sort((a, b) => {
+      return sortOrder === `desc` ? sortFn(b, a) : sortFn(a, b)
+    })
 
 }
 
@@ -59,6 +83,7 @@ export default function VillagerList({ currentVillager }) {
   const currentRef = React.useRef(null)
   const [ sortType, setSortType ] = React.useState(`alpha`)
   const [ sortOrder, setSortOrder ] = React.useState(`asc`)
+  const [ filter, setFilter ] = React.useState(``)
   const [ globalState ] = React.useContext(GlobalContext)
   const { headerHeight } = globalState
   React.useEffect(() => {
@@ -91,12 +116,15 @@ export default function VillagerList({ currentVillager }) {
   return (
     <>
       <div css={villagerControlStyle}>
+        <label for="villagerFilterInput">
+          <input id="villagerFilterInput" type="search" placeholder="Type to filter by name or birthday" onChange={evt => setFilter(evt.target.value)} />
+        </label>
         <Select onChange={option => setSortType(option.value)} defaultValue={sortTypeOptions[0]} options={sortTypeOptions} styles={selectStyleOverrides} isSearchable={false} />
         <Select onChange={option => setSortOrder(option.value)} defaultValue={sortOrderOptions[0]} options={sortOrderOptions} styles={selectStyleOverrides} isSearchable={false} />
       </div>
       <div css={villagerListStyle}>
         {
-          getVillagers(sortType, sortOrder).map(villager => {
+          getVillagers(sortType, sortOrder, filter).map(villager => {
             if (villager.key === currentVillager) {
               return <Villager key={villager.key} villager={villager} view="full" ref={currentRef} />
             }
