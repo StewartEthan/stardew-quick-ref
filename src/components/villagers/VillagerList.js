@@ -12,9 +12,12 @@ import { villagerInfo } from './villagerInfo'
 const villagerControlStyle = css`
   display: grid;
   font-size: 0.75em;
+  grid-template-areas:
+    "filter"
+    "sort-type"
+    "sort-order";
+  grid-template-columns: 1fr;
   grid-gap: 0.5em;
-  grid-template-areas: "filter filter" "sort-type sort-order";
-  grid-template-columns: repeat(2, 1fr);
   justify-content: start;
   margin-bottom: 1em;
 
@@ -31,6 +34,13 @@ const villagerControlStyle = css`
         transform: scale(1.5);
       }
     }
+  }
+
+  @media screen and (min-width: 600px) {
+    grid-template-areas:
+      "filter filter"
+      "sort-type sort-order";
+    grid-template-columns: repeat(2, 1fr);
   }
 `
 const villagerListStyle = css`
